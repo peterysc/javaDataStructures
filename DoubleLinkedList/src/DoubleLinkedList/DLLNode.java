@@ -27,6 +27,16 @@ public class DLLNode {
 		System.out.println("Before checking the size");
 		size = head.getSize(head);
 		System.out.println(size);
+		DLLNode newNode = new DLLNode(55);
+		insertNode(head, newNode,3);
+		System.out.println(newNode.getNext());
+		System.out.println(newNode.getPrevious());
+		DLLNode testing = new DLLNode(123);
+		testing.setNext(head);
+		head.setPrevious(testing);
+		System.out.println(head.getPrevious());
+		System.out.println(testing.getPrevious());
+		
 	}
 
 	private int data;
@@ -66,7 +76,7 @@ public class DLLNode {
 	}
 	
 	// get the size of DLL
-	int getSize(DLLNode headNode){
+	static int getSize(DLLNode headNode){
 		int size = 0;
 		if(headNode==null){
 			return size;
@@ -81,11 +91,20 @@ public class DLLNode {
 		return size;
 	}
 	
-	// insert node into DLL
+    // insert node into DLL
 	// headNode = head node of the DLL
 	// newNode = new node being inserted into DLL
 	// position = position of the node being inserted
-	DLLNode insertNode(DLLNode headNode, DLLNode newNode, int position){
+	static DLLNode insertNode(DLLNode headNode, DLLNode newNode, int position){
+		// nothing in the linked list
+		if(headNode == null){
+			return newNode;
+		}
+		int size = getSize(headNode);
+		if(position > size +1 || position < 1){
+			System.out.println("Position of newNode is invalid." + "The valid inputs are 1 to " + (size+1));
+			return headNode;
+		}
 		// inserting at the very front of the list
 		if(position == 1){
 			headNode.setPrevious(newNode);
@@ -94,7 +113,22 @@ public class DLLNode {
 			return newNode;
 		}
 		
-		return null;
-	}
+		// inserting at the middle or end
+		else{
+			int count = 1;
+			DLLNode currentNode = headNode;
+			while(count < position -1){
+				currentNode = currentNode.getNext();
+				count++;
+			}
+			DLLNode nextNode = currentNode.getNext();
+			nextNode.setPrevious(newNode);
+			currentNode.setNext(newNode);
+			newNode.setPrevious(currentNode);
+			newNode.setNext(nextNode);
+			
+		}
+		return headNode;
+	} 
 }
 
