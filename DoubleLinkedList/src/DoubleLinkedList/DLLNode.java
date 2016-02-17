@@ -1,6 +1,33 @@
 package DoubleLinkedList;
 
 public class DLLNode {
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		DLLNode head = new DLLNode(2);
+		DLLNode second = new DLLNode(10);
+		DLLNode third = new DLLNode(12);
+		DLLNode fourth = new DLLNode(13);
+		DLLNode fifth = new DLLNode(14);
+		DLLNode sixth = new DLLNode(10);
+		head.setPrevious(null);
+		head.setNext(second);
+		second.setPrevious(head);
+		second.setNext(third);
+		third.setNext(fourth);
+		third.setPrevious(second);
+		fourth.setNext(fifth);
+		fourth.setPrevious(third);
+		fifth.setNext(sixth);
+		fifth.setPrevious(fourth);
+		sixth.setNext(null);
+		sixth.setPrevious(fifth);
+		
+		int size;
+		System.out.println("Before checking the size");
+		size = head.getSize(head);
+		System.out.println(size);
+	}
 
 	private int data;
 	private DLLNode next;
@@ -44,9 +71,12 @@ public class DLLNode {
 		if(headNode==null){
 			return size;
 		}
-		DLLNode currentNode = headNode;
-		while(currentNode.getNext()!=null){
-			size++;
+		else{
+			DLLNode currentNode = headNode;
+			while(currentNode!=null){
+				size++;
+				currentNode = currentNode.getNext();
+			}
 		}
 		return size;
 	}
@@ -67,3 +97,4 @@ public class DLLNode {
 		return null;
 	}
 }
+
