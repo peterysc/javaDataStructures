@@ -130,5 +130,56 @@ public class DLLNode {
 		}
 		return headNode;
 	} 
+	
+	DLLNode deleteNode(DLLNode headNode, int pos){
+		int size = getSize(headNode);
+		DLLNode currentNode = headNode;
+		int count = 1;
+		// deleting a node in the DLL with a size of 1
+		if(size == 1){
+			return null;
+		}
+		// deleting a node when the size of the DLL is 0
+		if(size == 0){
+			System.out.println("The double linked list is already empty, can't delete a node in an empty list");
+			return null;
+		}
+		// deleting the very first node of the DLL
+		if(pos == 1){
+			DLLNode nextNode = currentNode.getNext();
+			currentNode.setNext(null);
+			nextNode.setPrevious(null);
+			return nextNode;
+		}
+		
+		// deleting the last node in the DLL
+		if(pos == size){
+			while(count < pos -1){
+				currentNode = currentNode.getNext();
+				count++;
+			}
+			DLLNode deletedNode = currentNode.getNext();
+			currentNode.setNext(null);
+			deletedNode.setPrevious(null);
+			deletedNode = null;
+			return headNode;
+		}
+		// deleting the nth node in the DLL when size is greater than 1
+		while(count < pos -1){
+			currentNode = currentNode.getNext();
+			count++;
+		}
+		DLLNode deletedNode = currentNode.getNext();
+		DLLNode nextNode = deletedNode.getNext();
+		nextNode.setPrevious(currentNode);
+		currentNode.setNext(nextNode);
+		deletedNode.setPrevious(null);
+		deletedNode.setNext(null);
+		deletedNode = null;
+		
+		return headNode;
+	}
+	
+	
 }
 
