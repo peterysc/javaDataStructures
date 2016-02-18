@@ -180,6 +180,26 @@ public class DLLNode {
 		return headNode;
 	}
 	
-	
+	// delete the list
+	DLLNode deleteDLL(DLLNode headNode){
+		int size = getSize(headNode);
+		DLLNode currentNode = headNode;
+		
+		if(size == 0){
+			System.out.println("Cannot delete an empty DLL.");
+			return headNode;
+		}
+		if(size == 1){
+			headNode = null;
+			return headNode;
+		}
+		while(size > 0){
+			currentNode = currentNode.getNext();
+			// java's garbage collection clears prev and next for the previous one
+			currentNode.setPrevious(null);
+			size --;
+		}
+		return currentNode;
+	}
 }
 
