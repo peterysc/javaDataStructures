@@ -17,6 +17,7 @@ public class SinglyNode {
 	
 	// get the data for the current node
 	public int getData(){
+		// if it is null, return -1
 		return data;
 	}
 	
