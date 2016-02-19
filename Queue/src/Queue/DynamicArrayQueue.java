@@ -62,8 +62,15 @@ public class DynamicArrayQueue {
 			resizeQueue();
 		}
 		
-		
-		
+		if(isEmpty()){
+			back ++;
+			front ++;
+			array[back] = input;
+			back ++;
+		}
+		array[back] = input;
+		back = (back + 1) % capacity;
+				
 	}
 	
 	public int deQueue(){
