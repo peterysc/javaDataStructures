@@ -37,6 +37,12 @@ public class DynamicArrayQueue {
 	}
 	
 	private void resizeQueue(){
+		if(isFull()){
+			int size = getQueueSize();
+			capacity = 2 * capacity;
+			char[] newArray = new char[capacity];
+			System.arraycopy(array, 0, newArray, 0, size);
+		}
 		
 	}
 	
@@ -46,6 +52,7 @@ public class DynamicArrayQueue {
 	
 	public int deQueue(){
 		
+		return 0;		
 	}
 
 }
