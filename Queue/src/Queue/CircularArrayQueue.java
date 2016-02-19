@@ -5,13 +5,13 @@ public class CircularArrayQueue {
 	private int front;
 	private int back;
 	private int capacity; // size = total number of elements in the array
-	private int[] array;
+	private char[] array;
 	
 	private CircularArrayQueue(int size){
 		capacity = size;
 		front = -1;
 		back = -1;
-		array = new int[size];
+		array = new char[size];
 	}
 
 	public static CircularArrayQueue createQueue(int size){
@@ -49,22 +49,28 @@ public class CircularArrayQueue {
 		return((capacity + (back - front))%capacity);	
 	}
 	
-	public void enQueue(int data){
-		int size = getQueueSize();
+	public void enQueue(char data) throws QueueOverflowException{
+		if(isFull()){
+			throw new QueueOverflowException("Queue Overflow");
+		}
 		array[back] = data;
 		back++;
-		if(back > size){
-			back = back % size;
+		if(back > capacity-1){
+			back = back % capacity;
 		}
 		
 	}
 	
-	public int deQueue(){
-		int size = getQueueSize();
-		int deQueueElement = array[front];
+	public char deQueue() throws EmptyQueueException{
+		if(isEmpty()){
+			throw new EmptyQueueException("Queue Empty.");
+		}
+		// set the element to null in char
+		array[front] = '\u0000';
+		char deQueueElement = array[front];
 		front++;
-		if(front > size){
-			front = front % size;
+		if(front > capacity-1){
+			front = front % capacity;
 		}
 		return deQueueElement;
 	}
