@@ -73,9 +73,14 @@ public class DynamicArrayQueue {
 				
 	}
 	
-	public int deQueue(){
+	public char deQueue() throws EmptyQueueException{
+		if(isEmpty()){
+			throw new EmptyQueueException("Queue is empty, cannot dequeue any elements");
+		}
 		
-		return 0;		
+		char dequeuedElement = array[front];
+		front = (front+1) % capacity;
+		return dequeuedElement;
 	}
 
 }
