@@ -44,24 +44,29 @@ public class CircularArrayQueue {
 			return 0;
 		}
 		if(front > back){
-			return ((capacity - (front - back) +1) %capacity);
+			return ((capacity - (back - front) +1) %capacity);
 		}
-		return((capacity + (front - back))%capacity);	
+		return((capacity + (back - front))%capacity);	
 	}
 	
 	public void enQueue(int data){
-		if(back == 0){
-			array[back] = data;
-			back ++;
-		}
-		
+		int size = getQueueSize();
 		array[back] = data;
 		back++;
+		if(back > size){
+			back = back % size;
+		}
 		
 	}
 	
 	public int deQueue(){
-		return 0;
+		int size = getQueueSize();
+		int deQueueElement = array[front];
+		front++;
+		if(front > size){
+			front = front % size;
+		}
+		return deQueueElement;
 	}
 	
 	public void deleteQueue(){
