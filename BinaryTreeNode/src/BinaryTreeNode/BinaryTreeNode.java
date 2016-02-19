@@ -43,8 +43,17 @@ public class BinaryTreeNode {
 		seven.setRight(null);
 		seven.setData('7');
 		
-//		preOrder(one);
+		System.out.println("PreOrderNow");
+		preOrder(one);
+		System.out.println("PreOrder No Recursion");
 		nonrecursivePreOrder(one);
+		System.out.println("InOrderNow");
+		inOrder(one);
+		System.out.println("InOrder No Recursion");
+		
+		System.out.println("PostOrderNow");
+		postOrder(one);
+		System.out.println("PostOrder No Recursion");
 		
 	}
 	
@@ -104,10 +113,32 @@ public class BinaryTreeNode {
 	}
 	
 	public static void inOrder(BinaryTreeNode root){
-		
+		if(root == null){
+			return;
+		}
+		inOrder(root.getLeft());
+		System.out.println(root.data);
+		inOrder(root.getRight());
 	}
 	
 	public static void nonrecursiveInOrder(BinaryTreeNode root){
+		if(root == null){
+			return;
+		}
+		Stack<BinaryTreeNode> stack = new Stack<BinaryTreeNode>();
+		stack.push(root);
+	}
+	
+	public static void postOrder(BinaryTreeNode root){
+		if(root == null){
+			return;
+		}
+		postOrder(root.getLeft());
+		postOrder(root.getRight());
+		System.out.println(root.data);
+	}
+	
+	public static void nonrecursivePostOrder(BinaryTreeNode root){
 		
 	}
 }
