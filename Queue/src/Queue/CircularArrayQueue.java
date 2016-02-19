@@ -31,7 +31,8 @@ public class CircularArrayQueue {
 	}
 	
 	public boolean isFull(){
-		return ((back+1)%capacity == front);
+		// assume that the array starts at index 0
+		return ((back)%(capacity-1) == front);
 	}
 	
 	public int getQueueSize(){
