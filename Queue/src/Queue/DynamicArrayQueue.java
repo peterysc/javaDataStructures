@@ -37,16 +37,32 @@ public class DynamicArrayQueue {
 	}
 	
 	private void resizeQueue(){
-		if(isFull()){
-			int size = getQueueSize();
-			capacity = 2 * capacity;
-			char[] newArray = new char[capacity];
-			System.arraycopy(array, 0, newArray, 0, size);
-		}
-		
+			int initCapacity = capacity;
+			capacity = capacity * 2;
+			char [] oldArray = array;
+			array = new char[this.capacity];
+			for(int i = 0; i < oldArray.length; i++){
+				array[i] = oldArray[i];
+			}
+			
+			if(back<front){
+				// reallocate the elements of the array that are positioned back < front to
+				// the addresses after front
+				for(int i = 0; i<front; i++){
+					array[i+initCapacity] = this.array[i];
+					array[i] = '\u0000';
+				}
+				// back pointer now re-valued
+				back = back + initCapacity;
+			}
 	}
 	
-	public void enQueue(){
+	public void enQueue(char input){
+		if(isFull()){
+			resizeQueue();
+		}
+		
+		
 		
 	}
 	
