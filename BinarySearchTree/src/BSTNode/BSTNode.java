@@ -2,7 +2,7 @@ package BSTNode;
 
 public class BSTNode {
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws NullPointerException {
 		
 		BSTNode six = new BSTNode();
 		six.setData(6);
@@ -56,9 +56,15 @@ public class BSTNode {
 		
 //		System.out.println("testing for removing");
 //		
-		six = delete(six,2);
+		six = delete(six,1);
 		System.out.println(six.left.data);
-		
+		System.out.println(two.left.data);
+		six = insert(six,1);
+		System.out.println(six.left.data);
+		System.out.println(two.left.data);
+		System.out.println(three.left.data);
+		six = delete(six,1);
+	
 	}
 	
 	private int data;
