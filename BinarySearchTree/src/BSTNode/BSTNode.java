@@ -34,6 +34,15 @@ public class BSTNode {
 		System.out.println(five.getLeft());
 		System.out.println(five.getRight());
 		System.out.println(four.getRight().getData());
+		BSTNode max = new BSTNode();
+		BSTNode min = new BSTNode();
+		System.out.println(six);
+		max = findMax(six);
+		min = findMin(six);
+		System.out.println(max);
+		System.out.println(eight);
+		System.out.println(min);
+		System.out.println(one);
 		
 	}
 	
@@ -100,29 +109,27 @@ public class BSTNode {
 	
 	// Time complexity: O(n), space complexity: O(1) however recursive version would require the
 	// space complexity of O(n)
-	public BSTNode findMin(BSTNode root){
-		BSTNode currentNode = root;
-		if(currentNode == null){
+	public static BSTNode findMin(BSTNode root){
+		if(root == null){
 			return null;
 		}
-		while(currentNode!=null){
-			currentNode = currentNode.getLeft();
+		while(root.getLeft()!=null){
+			root = root.getLeft();
 		}
 		
-		return currentNode;
+		return root;
 	}
 	
 	// Time complexity: O(n), space complexity: O(1) however recursive version would require the
 	// space complexity of O(n)
-	public BSTNode findMax(BSTNode root){
-		BSTNode currentNode = root;
-		if(currentNode == null){
+	public static BSTNode findMax(BSTNode root){
+		if(root == null){
 			return null;
 		}
-		while(currentNode!=null){
-			currentNode = currentNode.getRight();
+		while(root.getRight()!=null){
+			root = root.getRight();
 		}
-		return currentNode;
+		return root;
 	}
 		
 	// Time complexity: O(n), Space complexity: O(n)
