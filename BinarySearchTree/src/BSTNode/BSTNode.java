@@ -1,6 +1,15 @@
 package BSTNode;
 
 public class BSTNode {
+	
+	public static void main(String[] args) {
+		
+		
+		
+		
+		
+	}
+	
 	private int data;
 	private BSTNode left;
 	private BSTNode right;
@@ -60,5 +69,32 @@ public class BSTNode {
 		// nothing found
 		
 		return null;
+	}
+	
+	// Time complexity: O(n), space complexity: O(1) however recursive version would require the
+	// space complexity of O(n)
+	public BSTNode findMin(BSTNode root){
+		BSTNode currentNode = root;
+		if(currentNode == null){
+			return null;
+		}
+		while(currentNode!=null){
+			currentNode = currentNode.getLeft();
+		}
+		
+		return currentNode;
+	}
+	
+	// Time complexity: O(n), space complexity: O(1) however recursive version would require the
+	// space complexity of O(n)
+	public BSTNode findMax(BSTNode root){
+		BSTNode currentNode = root;
+		if(currentNode == null){
+			return null;
+		}
+		while(currentNode!=null){
+			currentNode = currentNode.getRight();
+		}
+		return currentNode;
 	}
 }
