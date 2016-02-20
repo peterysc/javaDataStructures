@@ -54,6 +54,7 @@ public class BinaryTreeNode {
 		System.out.println("PostOrderNow");
 		postOrder(one);
 		System.out.println("PostOrder No Recursion");
+		nonrecursivePostOrder(one);
 		
 	}
 	
@@ -150,6 +151,49 @@ public class BinaryTreeNode {
 	}
 	
 	public static void nonrecursivePostOrder(BinaryTreeNode root){
+		if(root == null){
+			return;
+		}
+		
+		Stack<BinaryTreeNode> stack = new Stack<BinaryTreeNode>();
+		BinaryTreeNode currentNode = root;
+		stack.push(currentNode);
+		BinaryTreeNode prev = null;
+		
+		while (!stack.isEmpty()) {
+            BinaryTreeNode current = stack.peek();
+ 
+            /* go down the tree in search of a leaf an if so process it and pop
+            stack otherwise move down */
+            if (prev == null || prev.left == current || prev.right == current) {
+                if (current.left != null) {
+                    stack.push(current.left);
+                } else if (current.right != null) {
+                    stack.push(current.right);
+                } else {
+                    stack.pop();
+                    System.out.println(current.data);
+                }
+ 
+                /* go up the tree from left node, if the child is right 
+                push it onto stack otherwise process parent and pop stack */
+            } else if (current.left == prev) {
+                if (current.right != null) {
+                    stack.push(current.right);
+                } else {
+                    stack.pop();
+                    System.out.println(current.data);
+                }
+                 
+                /* go up the tree from right node and after coming back
+                 from right node process parent and pop stack */
+            } else if (current.right == prev) {
+                stack.pop();
+                System.out.println(current.data);
+            }
+ 
+            prev = current;
+        }
 		
 	}
 }
