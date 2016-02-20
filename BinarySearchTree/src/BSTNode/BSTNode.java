@@ -29,6 +29,7 @@ public class BSTNode {
 		three.setLeft(null);
 		three.setRight(null);
 
+		// insert 5 into the BST
 		BSTNode five = insert(six, 5);
 		System.out.println(five.getData());
 		System.out.println(five.getLeft());
@@ -43,6 +44,22 @@ public class BSTNode {
 		System.out.println(eight);
 		System.out.println(min);
 		System.out.println(one);
+		
+		// tree is now
+		//				6
+		//			   /  \
+		// 		      2		8
+		//           / \
+		//   		1   4
+		//		     \   \
+		//			  3   5
+		
+//		System.out.println("testing for removing");
+//		
+//		BSTNode removeTwo = delete(six,2);
+//		System.out.println("two has been removed from the BST");
+//		System.out.println(three.data);
+//		System.out.println(six.left.data);
 		
 	}
 	
@@ -148,6 +165,39 @@ public class BSTNode {
 			}
 		}
 		
+		return root;
+	}
+	
+	public static BSTNode delete(BSTNode root, int data){
+		BSTNode currentNode;
+		if(root == null){
+			System.out.println("Cannot delete a node in an empty tree");
+			return null;
+		}
+		else if(data > root.data){
+			root.right = delete(root.getRight(),data);
+		}
+		else if(data < root.data){
+			root.left = delete(root.getLeft(),data);
+		}
+		else{		// found the node
+			// delete a node with two children
+			if(root.left != null && root.right != null){
+				currentNode = findMax(root.getLeft());
+				root.data = currentNode.data;
+				root.left = delete(root.left, root.getData());
+			}
+			// delete a node with one child
+			else{
+				currentNode = root;
+				if(root.getLeft() == null){
+					root = root.getRight();
+				}
+				if(root.getRight() == null){
+					root = root.getLeft();
+				}
+			}
+		}
 		return root;
 	}
 }
