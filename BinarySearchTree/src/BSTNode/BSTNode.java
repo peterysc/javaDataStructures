@@ -56,10 +56,8 @@ public class BSTNode {
 		
 //		System.out.println("testing for removing");
 //		
-//		BSTNode removeTwo = delete(six,2);
-//		System.out.println("two has been removed from the BST");
-//		System.out.println(three.data);
-//		System.out.println(six.left.data);
+		six = delete(six,2);
+		System.out.println(six.left.data);
 		
 	}
 	
@@ -188,14 +186,18 @@ public class BSTNode {
 				root.left = delete(root.left, root.getData());
 			}
 			// delete a node with one child
-			else{
+			else if(root.left!=null){
 				currentNode = root;
-				if(root.getLeft() == null){
-					root = root.getRight();
-				}
-				if(root.getRight() == null){
-					root = root.getLeft();
-				}
+				root = root.getLeft();
+				currentNode = null;
+			}
+			else if(root.right!=null){
+				currentNode = root;
+				root = root.getRight();
+				currentNode = null;
+			}
+			else{
+				root = null;
 			}
 		}
 		return root;
